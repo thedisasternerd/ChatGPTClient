@@ -1,5 +1,5 @@
 :root {
-  --button-background-color: #333;
+  --button-background-color: #202123;
   --button-border: transparent;
   --button-border-width: 5px;
   --button-border-radius: 5px;
@@ -7,10 +7,14 @@
   --button-padding: 5px 10px;
 }
 
+body {
+  font-family: "Courier New", sans-serif;
+}
+
 .App {
   text-align: center;
   display:flex;
-  background-color: #202123;
+  background-color: #e1e2ee;
   color: white;
   position: absolute;
   top: 0;
@@ -19,6 +23,143 @@
   right: 0;
 }
 
+/* Active Chat CSS */
+
+.activechat{
+  text-align: center;
+  display:flex;
+  flex-direction: column;
+  /* background-color: #202123; */
+  color: white;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 20px;
+  right: 20px;
+  margin-top:20px;
+  margin-bottom: 20px;
+  
+}
+
+
+.chathistory::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background-color: #fff;
+}
+
+.chathistory::-webkit-scrollbar-thumb {
+  background-color: #757678;
+  border-radius: 10px;
+}
+
+.chathistory::-webkit-scrollbar-track {
+  background-color: #343541;
+}
+
+.chathistory{
+  text-align:left;
+  display:flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-bottom: 60px;
+}
+
+.chatblock{
+  display:flex;
+  flex-direction: column;
+}
+
+
+.agentmessage{
+  word-break: break-all;
+  background-color: transparent;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  overflow-y: auto; 
+}
+
+.usermessage{
+  word-break: break-all;
+  background-color: #202123;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  
+}
+
+.usercontainer{
+  display:flex;
+  flex-direction: column;
+  background-color: #202123;
+  margin-top: 2px;
+  margin-bottom:2px;
+  align-items: flex-end;
+  overflow-y: auto; 
+}
+
+.agentcontainer{
+  display:flex;
+  flex-direction: column;
+  background-color: #313234;
+  margin-top: 2px;
+  margin-bottom:2px;
+  align-items: flex-start;
+  overflow-y: auto; 
+}
+
+.useridentifier{
+  margin-right: 8px;
+  margin-top: 10px;
+}
+
+.agentidentifier{
+  margin-left: 8px;
+  margin-top: 10px;
+}
+
+.chatinput{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  width: 100%;
+  bottom: 2px;
+  background-color: #202123;
+  min-height: 40px;
+  max-height: 200px;
+}
+
+.input_bar{
+  width: 100%;
+  flex-grow: 1;
+  resize: none;
+  outline: none;
+  color: white;
+  background-color: transparent;
+  border: none;
+  margin-top:15px;
+  /* margin-bottom:10px; */
+  margin-left: 20px;
+  min-height: 40px;
+  max-height: 200px;
+}
+
+.submit{
+  margin-left: 2px;
+  width: 40px;
+  height: 40px;
+  background-color: var(--button-background-color);
+  border: var(--button-border);
+  padding: var(--button-padding);
+}
+
+/* Sidebar styling */
+
 .sidemenu{
   margin-left:auto;
   margin-right:auto;
@@ -26,11 +167,11 @@
   padding: 10px;
 }
 
-.activechat{
+/* .activechat{
   width:100%;
   padding:10px;
   background-color: #343541;
-}
+} */
 
 /* Align the buttons in the sidebar to the left in a row */
 .menuitems{
@@ -86,7 +227,6 @@
 }
 
 
-
 .settings{
   margin-left: 2px;
   width: 40px;
@@ -126,32 +266,4 @@
   border: var(--button-border);
   border-width: var(--button-border-width);
   padding: var(--button-padding);
-}
-
-/* Active Chat CSS */
-
-.activechat{
-  width:80%;
-  padding:10px;
-  background-color: #343541;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.chatinput{
-  position: absolute;
-  width: 60%;
-  bottom: 2px;
-  background-color: transparent;
-}
-
-.input_bar{
-  width: 100%;
-  height: 40px;
-  resize: none;
-  outline: none;
-  color: white;
-  background-color: var(--button-background-color);
-  border: var(--button-border);
 }
