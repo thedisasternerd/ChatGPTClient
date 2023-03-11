@@ -1,0 +1,37 @@
+
+.markdown-content {
+line-height: 1.5;
+color: #fff;
+}
+  
+.markdown-content pre {
+background-color: #000;
+border-radius: 3px;
+line-height: 1.5;
+margin-bottom: 1rem;
+overflow: auto;
+padding: 1rem;
+white-space: pre-wrap;
+}
+
+.markdown-content code {
+font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+}
+
+.markdown-content .inline-code {
+background-color: #f5f5f5;
+border-radius: 3px;
+padding: 2px;
+}
+
+.markdown-content table {
+border-collapse: collapse;
+width: 100%;
+margin-bottom: 1rem;
+}
+
+.markdown-content th,
+.markdown-content td {
+border: 1px solid #fff;
+padding: 0.5rem;
+}
