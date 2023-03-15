@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import {BsSend} from 'react-icons/bs';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import {api_params} from './api_settings.js';
 import './App.css';
 import './chatresponse.css';
+
 
 
 function FormContainer() {
@@ -75,21 +77,27 @@ function FormContainer() {
     // Call handleSubmit with the event object
     try{
 
-      const res = await fetch('https://api.openai.com/v1/chat/completions', {
+      const res = await fetch('/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': "Bearer " + "API-KEY"
         },
         body: JSON.stringify({
-          "model": "gpt-3.5-turbo",
-          "messages": [{"role": "user", "content": value}]
-        })
+          message: {
+            "model": api_params.model,
+            "temperature": api_params.temperature,
+            "max_tokens": api_params.max_tokens,
+            "top_p": api_params.top_p,
+            "n": api_params.n,
+            "presence_penalty": api_params.presence_penalty,
+            "frequency_penalty": api_params.frequency_penalty,
+            "stop": api_params.stop,
+            "messages": [{"role": "user", "content": value}]
+          },
+        }),
       });
       const data = await res.json();
       setResponse(data.choices[0].message.content);
-      console.log(data);
-      console.log(response);
     const newContainer = (
       <div className="chatblock">
         <div className="usercontainer">
