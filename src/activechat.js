@@ -5,6 +5,7 @@ import remarkGfm from 'remark-gfm';
 import {api_params} from './api_settings.js';
 import './App.css';
 import './chatresponse.css';
+import { GridLoader } from 'react-spinners';
 
 
 
@@ -13,6 +14,8 @@ function FormContainer() {
   const [containers, setContainers] = useState([]);
   const [value, setValue] = useState('');
   const [response, setResponse] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
 
   useEffect(() => {
 
@@ -76,7 +79,7 @@ function FormContainer() {
   async function handleAddContainer(event) {
     // Call handleSubmit with the event object
     try{
-
+      setIsSubmitting(true);
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: {
@@ -96,6 +99,7 @@ function FormContainer() {
           },
         }),
       });
+      setIsSubmitting(false);
       const data = await res.json();
       setResponse(data.choices[0].message.content);
     const newContainer = (
@@ -125,6 +129,7 @@ function FormContainer() {
     }
     catch(err){
       console.log(err);
+      setIsSubmitting(false);
     }
   }
 
@@ -147,7 +152,13 @@ function FormContainer() {
           {/* Code to render bottom form */}
           <div className="chatinput">
               <textarea className="input_bar" value={value} onChange={handleChange} onKeyDown={handleEnter}/>
-              <button className="submit" onClick={handleAddContainer} ><BsSend className="icon"/></button>
+              <button className="submit" onClick={handleAddContainer} disabled={isSubmitting}>
+                {isSubmitting ? (
+                  <GridLoader className="icon" size={6} color={"#ffffff"} />
+                ) : (
+                  <BsSend className="icon" />
+                )}
+              </button>
           </div>
           
         </form>
