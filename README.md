@@ -2,7 +2,7 @@
 The repository contains the barebones single chat client application that mimics the similar behavior as ChatGPT. The inteface consists of an input bar at the bottom of the page. The user can type out their message and press enter/click send to receive a response. The responses are rendered via ReactMarkdown to render the code blocks and tables appropriately. The benefit of this app is you are able to access ChatGPT for a fraction of the cost. 
 Here is a screenshot of the MVP:
 <!-- Add Image from assets/ -->
-![ChatGPT](assets/demo_mvp_2.png)
+![demo](assets/demo_mvp_2.PNG)
 
 ### Installation
 To run the application, follow the steps as follows: 
