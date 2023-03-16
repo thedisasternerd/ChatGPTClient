@@ -33,10 +33,11 @@ Here I have documented the tasks I performed to realize this project. If you wou
   - [x] Route the request to ChatGPT API
   - [x] Improved styling and fixed maximum width of the window
   - [x] Freeze the send button by replacing it with a spinning wheel. 
+  - [x] Highlight Sendbutton when hovering over
 
 - [ ] Pending Enhancements
+  - [ ] Clean up the styling and make it more consistent and generalized
   - [ ] Add the option to regenerate response
   - [ ] Stream and animate the text
-  - [ ] Highlight Sendbutton when hovering over
   - [ ] Collapsible Sidebar to set the other parameters such as temperature, top_p, etc.
 

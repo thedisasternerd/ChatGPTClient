@@ -36,7 +36,7 @@ function FormContainer() {
       textarea.style.height = '20px';
       chatinput.style.height = textarea.style.height;
       // set the margin of the chat history to the height of the chatinput
-      chathistorymargin.style.marginBottom = `${48}px`;
+      chathistorymargin.style.marginBottom = `${60}px`;
     };
 
     textarea.addEventListener('input', adjustHeight);

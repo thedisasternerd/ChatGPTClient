@@ -163,8 +163,12 @@ body {
   background-color: var(--button-background-color);
   border: var(--button-border);
   padding: var(--button-padding);
+  transition: var(--button-background-color) 0.2s ease;
 }
-
+.submit:hover {
+  background-color:#313234; /* Replace with your desired hover color */
+  cursor: pointer;
+}
 /* Sidebar styling */
 
 .sidemenu {
