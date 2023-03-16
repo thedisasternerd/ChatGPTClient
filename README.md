@@ -6,11 +6,18 @@ Here is a screenshot of the MVP:
 
 ### Installation
 To run the application, follow the steps as follows: 
-1) Install Node.js from this [link](https://nodejs.org/en/download/)
-2) Install the dependencies with ```npm install```
-3) Get an OpenAI API key from this [link](https://platform.openai.com/account/api-keys).
-4) Create a file named .env in your root directory and add your API key as: API_KEY=```API-KEY```. Replace ```API-KEY``` with your API key.
-5) Run the application as npm run dev from your root directory. 
+1. Clone the repository: 
+    ```bash
+      git clone https://github.com/mathadoor/ChatGPTClient.git
+    ```
+2. Install Node.js from this [link](https://nodejs.org/en/download/)
+3. Install the dependencies with 
+    ```bash
+      npm install
+    ```
+4. Get an OpenAI API key from this [link](https://platform.openai.com/account/api-keys).
+5. Create a file named .env in your root directory and add your API key as: API_KEY=```API-KEY```. Replace ```API-KEY``` with your API key.
+6. Run the application as npm run dev from your root directory. 
 
 ### Customizing the response
 You may customize the response by specifying your parameters in the file src\api_settings.js. To learn more about how these settings affect the output, visit [OpenAI API documentation](https://platform.openai.com/docs/api-reference/chat/create)

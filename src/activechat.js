@@ -141,6 +141,10 @@ function FormContainer() {
 
   return (
     <div className="activechat">
+      <div className="topbar">
+        🤖 
+      </div>
+
       {/* List of containers */}
       <div className="chathistory">
         {containers}
@@ -152,8 +156,8 @@ function FormContainer() {
           {/* Code to render bottom form */}
           <div className="chatinput">
               <textarea className="input_bar" value={value} onChange={handleChange} onKeyDown={handleEnter}/>
-              <button className="submit" onClick={handleAddContainer} disabled={isSubmitting}>
-                {isSubmitting ? (
+              <button className="submit" onClick={handleAddContainer} disabled={isSubmitting | value === ''}>
+                {(isSubmitting ) ? (
                   <GridLoader className="icon" size={6} color={"#ffffff"} />
                 ) : (
                   <BsSend className="icon" />
