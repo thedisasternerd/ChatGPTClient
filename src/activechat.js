@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {BsSend} from 'react-icons/bs';
+import { TfiReload } from 'react-icons/tfi'; 
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import {api_params} from './api_settings.js';
@@ -15,7 +16,10 @@ function FormContainer() {
   const [value, setValue] = useState('');
   const [response, setResponse] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [latestUserMessage, setLatestUserMessage] = useState(''); 
 
+  // Add this ref
+  const latestAgentMessageRef = useRef();
 
   useEffect(() => {
 
@@ -72,6 +76,38 @@ function FormContainer() {
   }, [response]);
 
 
+  async function handleRegenerateResponse() {
+    try {
+      setIsSubmitting(true);
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message: {
+            "model": api_params.model,
+            "temperature": api_params.temperature,
+            "max_tokens": api_params.max_tokens,
+            "top_p": api_params.top_p,
+            "n": api_params.n,
+            "presence_penalty": api_params.presence_penalty,
+            "frequency_penalty": api_params.frequency_penalty,
+            "stop": api_params.stop,
+            "messages": [{ "role": "user", "content": latestUserMessage }],
+          },
+        }),
+      });
+      setIsSubmitting(false);
+      const data = await res.json();
+      setResponse(data.choices[0].message.content);
+      latestAgentMessageRef.current.innerHTML = data.choices[0].message.content; // Update the agent message
+    } catch (err) {
+      console.log(err);
+      setIsSubmitting(false);
+    }
+  }
+
   // Define the handleSubmit function outside handleAddContainer  
   
   
@@ -80,6 +116,7 @@ function FormContainer() {
     // Call handleSubmit with the event object
     try{
       setIsSubmitting(true);
+      setLatestUserMessage(value);
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: {
@@ -103,22 +140,17 @@ function FormContainer() {
       const data = await res.json();
       setResponse(data.choices[0].message.content);
     const newContainer = (
-      <div className="chatblock">
+      <div className="chatblock" key={containers.length}>
         <div className="usercontainer">
-          <div className="useridentifier">
-            <text >🧔</text>
-          </div>
+          <div className="useridentifier">🧔</div>
           <div className="usermessage">
             {value}
           </div>
         </div>
         <div className="agentcontainer">
-          <div className="agentidentifier">
-            <text>🤖</text>
-          </div>
-          <div className="agentmessage">
+          <div className="agentidentifier">🤖</div>
+          <div className="agentmessage" ref={latestAgentMessageRef}>
             <ReactMarkdown className="markdown-content" remarkPlugins={[remarkGfm]} children={data.choices[0].message.content} />
-            {/* <text>{data.choices[0].message.content}</text> */}
           </div>
         </div>
       </div>
@@ -162,6 +194,9 @@ function FormContainer() {
                 ) : (
                   <BsSend className="icon" />
                 )}
+              </button>
+              <button className="regenerate-btn" onClick={handleRegenerateResponse} disabled={latestUserMessage === ''}>
+                <TfiReload className="icon"/>
               </button>
           </div>
           
