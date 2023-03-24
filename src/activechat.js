@@ -140,19 +140,15 @@ function FormContainer() {
       const data = await res.json();
       setResponse(data.choices[0].message.content);
     const newContainer = (
-      <div className="chatblock">
+      <div className="chatblock" key={containers.length}>
         <div className="usercontainer">
-          <div className="useridentifier">
-            <text >🧔</text>
-          </div>
+          <div className="useridentifier">🧔</div>
           <div className="usermessage">
             {value}
           </div>
         </div>
         <div className="agentcontainer">
-          <div className="agentidentifier">
-            <text>🤖</text>
-          </div>
+          <div className="agentidentifier">🤖</div>
           <div className="agentmessage" ref={latestAgentMessageRef}>
             <ReactMarkdown className="markdown-content" remarkPlugins={[remarkGfm]} children={data.choices[0].message.content} />
           </div>
@@ -199,7 +195,7 @@ function FormContainer() {
                   <BsSend className="icon" />
                 )}
               </button>
-              <button className="regenerate-btn" onClick={handleRegenerateResponse} disable={latestUserMessage === ''}>
+              <button className="regenerate-btn" onClick={handleRegenerateResponse} disabled={latestUserMessage === ''}>
                 <TfiReload className="icon"/>
               </button>
           </div>
