@@ -37,8 +37,3 @@ Here I have documented the tasks I performed to realize this project. If you wou
   - [x] Clean up the styling and make it more consistent and generalized
   - [x] Add the option to regenerate response
 
-- [ ] Pending Enhancements
-  - [ ] Stream and animate the text
-  - [ ] Render the regenerated text in markdown
-  - [ ] Collapsible Sidebar to set the other parameters such as temperature, top_p, etc.
-
